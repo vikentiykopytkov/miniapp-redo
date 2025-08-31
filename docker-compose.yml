@@ -29,10 +29,9 @@ services:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD}
       POSTGRES_URL: postgres://roulette:roulette@db:5432/roulette
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     ports:
-    - "8080:8080"
+      - "8080:8080"
 
 volumes:
   db-data:
