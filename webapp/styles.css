@@ -1,0 +1,6 @@
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #0e1116; color: #e8eef7; }
+.container { max-width: 720px; margin: 40px auto; padding: 20px; }
+.row { display: flex; gap: 8px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
+button { background: #1f6feb; color: #fff; border: 0; padding: 10px 14px; border-radius: 10px; cursor: pointer; }
+button:hover { opacity: .95; }
+.card { background: #121621; padding: 16px; border-radius: 12px; margin-top: 16px; }

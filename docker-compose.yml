@@ -1,0 +1,41 @@
+version: "3.9"
+
+
+services:
+db:
+image: postgres:16-alpine
+restart: unless-stopped
+environment:
+POSTGRES_DB: roulette
+POSTGRES_USER: roulette
+POSTGRES_PASSWORD: roulette
+volumes:
+- db-data:/var/lib/postgresql/data
+healthcheck:
+test: ["CMD-SHELL", "pg_isready -U roulette -d roulette"]
+interval: 5s
+timeout: 3s
+retries: 20
+
+
+server:
+build:
+context: .
+dockerfile: server/Dockerfile
+restart: unless-stopped
+environment:
+PORT: 8080
+PUBLIC_URL: ${PUBLIC_URL}
+BOT_TOKEN: ${BOT_TOKEN}
+REQUIRED_CHANNEL: ${REQUIRED_CHANNEL}
+ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+POSTGRES_URL: postgres://roulette:roulette@db:5432/roulette
+depends_on:
+db:
+condition: service_healthy
+ports:
+- "8080:8080"
+
+
+volumes:
+db-data:
