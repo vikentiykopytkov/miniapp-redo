@@ -5,7 +5,7 @@ WORKDIR /app
 # Устанавливаем зависимости
 COPY server/package.json ./package.json
 COPY server/tsconfig.json ./tsconfig.json
-RUN npm install --production=false
+RUN npm install --save-dev @types/pg
 
 
 # Копируем исходники и статику
